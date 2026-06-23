@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Premium | Artur Emmer</title>
+    
+    <!-- Google Fonts: Lora para Títulos Serifados e Plus Jakarta Sans para fallbacks modernos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração de Cores e Fontes Personalizadas -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mintcream: '#F5FFFA',
+                        charcoal: '#2C3531',
+                        navajowhite: '#FFDEAD',
+                        sage: '#8FBC8F',
+                        terracotta: '#E07A5F',
+                    },
+                    fontFamily: {
+                        // Elms Sans padrão solicitado com fallbacks de altíssima qualidade
+                        elms: ['"Elms Sans"', '"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 1. Textura de Ruído (Granulado) Analógica */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.025; /* Suave para não poluir visualmente */
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* 2. Animação de Entrada ao Rolas a Página (Fade Up) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. Botão Premium com Preenchimento Magnético / Deslizante */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #2C3531; /* Charcoal */
+            z-index: -1;
+            transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-premium:hover::before {
+            top: 0;
+        }
+    </style>
+</head>
+<body class="bg-mintcream text-charcoal font-elms antialiased selection:bg-charcoal selection:text-mintcream relative">
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center px-6 py-24 fade-in">
+        <div class="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-16">
+            
+            <!-- Conteúdo de Texto -->
+            <div class="w-full md:w-3/5 space-y-8">
+                <div class="space-y-4">
+                    <!-- Título Elegante com Mistura Tipográfica -->
+                    <h1 class="text-5xl md:text-7xl font-light tracking-tight leading-none text-charcoal">
+                        <span class="font-serif italic font-normal">Artur Emmert</span> <br>
+                        <span class="text-xl md:text-2xl font-bold uppercase tracking-widest text-charcoal/70 block mt-4 font-elms">
+                            Estudante, Projetista e Desenvolvedor de scripts em Python
+                        </span>
+                    </h1>
+                </div>
+                
+                <!-- Biografia com espaçamento de letras aprimorado -->
+                <p class="text-lg md:text-xl leading-relaxed max-w-2xl text-charcoal/80 font-light tracking-wide">
+                    Tenho interesse nas áreas como: desenvolvimento FullStack, Front-End, Análise e Ciência de Dados 
+                </p>
+                
+                <!-- Tagline Secundária Opcional -->
+                <div class="flex items-center gap-2 text-sm text-charcoal/50 uppercase tracking-widest font-semibold">
+                    <span class="w-8 h-px bg-charcoal/30"></span>
+                    <span>Disponível para novos projetos</span>
+                </div>
+            </div>
+            
+            <!-- Elemento Visual Premium (Foto) -->
+            <div class="w-full md:w-2/5 flex justify-center relative">
+                <!-- Círculo com Borda Gradiente NavajoWhite e Efeito Glow Duplo -->
+                <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-navajowhite via-white to-navajowhite p-1.5 shadow-[0_0_50px_rgba(255,222,173,0.5),inset_0_0_20px_rgba(255,222,173,0.2)] flex items-center justify-center transition-all duration-500 hover:shadow-[0_0_65px_rgba(255,222,173,0.7)] hover:scale-[1.03] group">
+                    
+                    <!-- Fundo interno para acomodar a foto futuramente -->
+                    <div class="w-full h-full rounded-full bg-mintcream flex items-center justify-center overflow-hidden relative">
+                        <img
+                            src="./assets/img/foto_portfolio_circulo.png"
+                            alt="Artur Emmer"
+                            class="w-full h-full object-cover rounded-full"
+                />  </div>
+                    
+                    <!-- Detalhe decorativo flutuante geométrico -->
+                    <div class="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-sage/20 border border-white/40 backdrop-blur-sm shadow-sm"></div>
+                    <div class="absolute -top-4 -left-4 w-6 h-6 rounded-full bg-terracotta/20 border border-white/40 backdrop-blur-sm shadow-sm"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION (Glassmorphism & Cores Distintas) -->
+    <section class="py-24 px-6 fade-in">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-serif mb-12 border-b border-charcoal/10 pb-6 text-charcoal">
+                Habilidades & <span class="italic font-normal text-charcoal/80">Conhecimentos</span>
+            </h2>
+            
+            <!-- Grid de 3 Cards com Glassmorphism Real -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Programming -->
+                <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(44,53,49,0.03)] hover:shadow-[0_12px_40px_0_rgba(44,53,49,0.06)] transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-charcoal/50 uppercase block mb-4">01 // Dev</span>
+                        <h3 class="text-2xl font-serif mb-4 text-charcoal">Programação</h3>
+                        <p class="mb-8 text-charcoal/70 leading-relaxed font-light text-[15px]">
+                            Sou iniciante na área, então foco em aprender diferentes tecnologias e arquiteturas. Até o momento já tenho conhecimento básico em Python, Java, TypeScrip e Banco de Dados. Também já tenho alguns projetos em andamento com HTML5, Tailwind CSS e JS, e estudando REACT para futura implementação.  
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-charcoal/5">
+                        <!-- Badges com tom Sálvia Suave -->
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">JavaScript</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Java</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Python</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">TypeScript</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">MySQL</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Tailwind</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">REACT</span>
+                        <span class="px-3 py-1 bg-sage/10 border border-sage/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Git e GitHub</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Experiência -->
+                <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(44,53,49,0.03)] hover:shadow-[0_12px_40px_0_rgba(44,53,49,0.06)] transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-charcoal/50 uppercase block mb-4">02 // Histórico</span>
+                        <h3 class="text-2xl font-serif mb-4 text-charcoal">Experiência</h3>
+                        <p class="mb-8 text-charcoal/70 leading-relaxed font-light text-[15px]">
+                            Atualmente sou projetista e desenvolvedor de scrips com experiência em Python. Como estudante de ciência da computação busco experiência em áreas como: ciência de dados, front e back end ou fullstack. No meu eprego atual já utilizo algumas metologias como Scrum e Kanban (quadros) e outras ferramentas conhecidas.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-charcoal/5">
+                        <!-- Badges com tom Terracotta Suave -->
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Ciência da Computação</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Projetista</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Kanban e Scrum</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Trello</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Monday</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">Excel</span>
+                        <span class="px-3 py-1 bg-terracotta/10 border border-terracotta/25 text-charcoal/80 text-xs font-medium rounded-full tracking-wide">MSproject</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Design -->
+                <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(44,53,49,0.03)] hover:shadow-[0_12px_40px_0_rgba(44,53,49,0.06)] transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-charcoal/50 uppercase block mb-4">03 // Estética</span>
+                        <h3 class="text-2xl font-serif mb-4 text-charcoal">Design e IA's</h3>
+                        <p class="mb-8 text-charcoal/70 leading-relaxed font-light text-[15px]">
+                            Busco conhecimento e boas práticas com UX Design, já controlando alguns projetos como o Math Lógic, destindo ao público infatil, tentando sempre olhar para expência final do projeto. Também busco sempre estar atualizado em novas inteligências artificais.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-charcoal/5">
+                        <!-- Badges com tom NavajoWhite Suave -->
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">Canva</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">Figma</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">GoogleStitch</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">ChatGPT</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">Gemini/NanoBanana</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">Claude</span>
+                        <span class="px-3 py-1 bg-navajowhite/40 border border-navajowhite text-charcoal/80 text-xs font-semibold rounded-full tracking-wide">Copilot</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION (Layout Assimétrico Deslocado) -->
+    <section class="py-24 px-6 fade-in overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-serif mb-16 border-b border-charcoal/10 pb-6 text-charcoal">
+                Projetos <span class="italic font-normal text-charcoal/80">em Destaque</span>
+            </h2>
+            
+            <!-- Grid de Projetos Assimétrico (Adicionada margem superior estendida para suportar deslocamento no Desktop) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 md:pb-16">
+                
+                <!-- Projeto 1 (Alinhamento Normal) -->
+                <div class="bg-white/10 rounded-3xl overflow-hidden border border-white/50 hover:-translate-y-2 transition-all duration-300 flex flex-col group shadow-sm">
+                    <div class="h-64 overflow-hidden">
+    <img
+        src="./assets/img/Math_logic.png"
+        alt="Math Logic"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    >
+</div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-serif mb-3 text-charcoal">Project Math logic</h3>
+                            <p class="text-charcoal/70 leading-relaxed font-light text-[15px] mb-8">
+                                Este projeto eu criei a fim de realizar uma pesquisa para um grupo na Faculdade que se chama Logicando, que busca ensinar lógica e plataformas de programação para crianças do ensino fundamental.
+                                Então após relizar um pesquisa decidi montar um aplicativo de programação matemática em blocos assim, como app inventor, mas somente para matemática.
+                            </p>
+                        </div>
+                       <a
+    href="https://github.com/artur-emmert/math-logic"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-premium inline-block text-center w-full border border-charcoal text-charcoal py-4 rounded-xl font-medium uppercase tracking-widest text-xs"
+>
+    Acessar Repositório
+</a>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 (Deslocado para baixo no Desktop - Criando Ritmo) -->
+                <div class="bg-white/10 rounded-3xl overflow-hidden border border-white/50 hover:-translate-y-2 transition-all duration-300 flex flex-col group shadow-sm md:translate-y-12">
+                    <div class="h-64 overflow-hidden">
+                        <img
+        src="./assets/img/DIBASIS.png"
+        alt="DIBASIS"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    >
+</div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-serif mb-3 text-charcoal">DIBASiS</h3>
+                            <p class="text-charcoal/70 leading-relaxed font-light text-[15px] mb-8">
+                                O DIBASiS (Digital Bank Analysis) seria a ideia de uma plataforma que busca comparar ações de bancos digitais, como nubank e inter. 
+                                Sendo um projeto pessoal que busquei aprender a mexer com diferentes tecnologias, como HTML e CSS, crinando várias telas, aplicando Java ao projeto futuramente para o back end.
+                                Também tinha interesse em aprender a manipular o básico de um banco de dados, por isso criei uma tela de criar login.
+                                Nesse andamento de projeto busco aprender na prática diferentes conceitos que só sei o básico e a teoria. Fazer deploy. Git e GitHub, interligar API's entre outros.
+                            </p>
+                        </div>
+                        <a
+    href="https://github.com/artur-emmert/DIBASIS"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-premium inline-block text-center w-full border border-charcoal text-charcoal py-4 rounded-xl font-medium uppercase tracking-widest text-xs"
+>
+    Acessar Repositório
+</a>
+                    </div>
+                </div>
+
+                <!-- Projeto 3 (Alinhamento Normal) -->
+                <div class="bg-white/10 rounded-3xl overflow-hidden border border-white/50 hover:-translate-y-2 transition-all duration-300 flex flex-col group shadow-sm">
+                    <div class="h-64 overflow-hidden">
+    <img
+        src="./assets/img/estudos_repositorio.png"
+        alt="Estudos Java e Python"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    >
+</div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-serif mb-3 text-charcoal">Meus estudos</h3>
+                            <p class="text-charcoal/70 leading-relaxed font-light text-[15px] mb-8">
+                                Aqui contém meus estudos sobre Java, Python, entre outros.
+                            </p>
+                        </div>
+                        <a
+    href="https://github.com/artur-emmert/EstudosJava"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-premium inline-block text-center w-full border border-charcoal text-charcoal py-4 rounded-xl font-medium uppercase tracking-widest text-xs"
+>
+    Acessar Repositório
+</a>
+                    </div>
+                </div>
+
+                <!-- Projeto 4 (Deslocado para baixo no Desktop) -->
+                <div class="bg-white/10 rounded-3xl overflow-hidden border border-white/50 hover:-translate-y-2 transition-all duration-300 flex flex-col group shadow-sm md:translate-y-12">
+                    <div class="h-64 overflow-hidden">
+    <img
+        src="./assets/img/scripts.png"
+        alt="Scripts Python"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    >
+</div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-serif mb-3 text-charcoal">Scripts</h3>
+                            <p class="text-charcoal/70 leading-relaxed font-light text-[15px] mb-8">
+                                Alguns dos scrips que já criei utilizando python para a empresa que trabalho, esses
+                                scripts automatizam terafas repetitivas em Excel e no software Rhino.
+                            </p>
+                        </div>
+                        <a
+    href="https://github.com/artur-emmert/Scrips-em-Python-"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn-premium inline-block text-center w-full border border-charcoal text-charcoal py-4 rounded-xl font-medium uppercase tracking-widest text-xs"
+>
+    Acessar Repositório
+</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLABORATION & CONTACT SECTION -->
+    <section class="py-32 px-6 bg-charcoal/[0.02] border-t border-charcoal/5 fade-in md:mt-24">
+        <div class="max-w-4xl mx-auto text-center space-y-16">
+            
+            <!-- Certificados -->
+            <div class="space-y-6">
+                <h2 class="text-3xl md:text-4xl font-serif text-charcoal">Certificados</h2>
+                <div class="max-w-2xl mx-auto text-charcoal/70 leading-relaxed font-light text-lg">
+                    [Escreva e liste suas certificações mais impactantes de forma minimalista. Ideal para mostrar sua busca constante por conhecimento.]
+                </div>
+            </div>
+
+            <hr class="border-charcoal/10 max-w-xs mx-auto">
+
+            <!-- Bloco de Contato Super Clean -->
+            <div class="space-y-10">
+                <div class="space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-serif text-charcoal">Vamos conversar?</h2>
+                    <p class="text-charcoal/60 text-sm font-semibold uppercase tracking-widest">Sempre aberto para colaborações</p>
+                </div>
+                
+                <div class="inline-flex flex-col md:flex-row items-center gap-8 md:gap-16 bg-white/40 backdrop-blur-md px-10 py-8 rounded-3xl border border-white/60 shadow-sm">
+                    <!-- Celular -->
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center text-charcoal">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <span class="text-lg font-medium text-charcoal tracking-wider">(+..) .....-....</span>
+                    </div>
+                    
+                    <div class="hidden md:block w-px h-12 bg-charcoal/10"></div>
+
+                    <!-- E-mail Premium -->
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center text-charcoal">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <a href="mailto:arturemmer0@gmail.com" class="text-lg font-medium text-charcoal hover:text-terracotta transition-colors duration-300 relative py-1">
+                            arturemmer0@gmail.com
+                            <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JS Interações de Entrada Suave -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
